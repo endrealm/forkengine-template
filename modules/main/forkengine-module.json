@@ -1,0 +1,8 @@
+{
+    "version": "1.0",
+    "dependencies": {
+        "https://github.com/endrealm/forkengine-core.git": {
+            "branch": "main"
+        }
+    }
+}
