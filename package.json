@@ -5,7 +5,10 @@
   "repository": "https://github.com/endrealm/forkengine-template",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start:dev": "yarn workspace forkengine-boot start"
+  },
   "workspaces": [
-    "modules/*"// dsad
+    "modules/*"
   ]
 }

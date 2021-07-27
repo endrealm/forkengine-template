@@ -5,5 +5,8 @@
   "license": "MIT",
   "dependencies": {
     "forkengine-core": "1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5"
   }
 }

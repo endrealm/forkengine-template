@@ -1,1 +1,3 @@
-src/app/modules
+node_modules
+modules/*
+!modules/main
