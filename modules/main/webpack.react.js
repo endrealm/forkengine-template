@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     mode: "development",
@@ -11,12 +12,12 @@ module.exports = {
         compress: true,
         port: 9000,
     },
-    // resolve: {
-    //     alias: {
-    //         ["@"]: path.resolve(__dirname, "src"),
-    //     },
-    //     extensions: [".tsx", ".ts", ".js"],
-    // },
+    resolve: {
+        // alias: {
+        //     ["@"]: path.resolve(__dirname, "src"),
+        // },
+        extensions: [".tsx", ".ts", ".js"],
+    },
     module: {
         rules: [
             {
@@ -30,6 +31,9 @@ module.exports = {
             },
         ],
     },
+    externals: [nodeExternals({
+        modulesDir: path.resolve(__dirname, '../../node_modules'),
+    })],
     output: {
         path: __dirname + "/dist",
         filename: "renderer.js",
