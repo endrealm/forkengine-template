@@ -6,9 +6,15 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start:dev": "yarn workspace forkengine-boot start"
+    "start:dev": "yarn workspace forkengine-boot start:dev"
   },
   "workspaces": [
     "modules/*"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "^4.3.5",
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2",
+    "ts-loader": "^9.2.4"
+  }
 }
