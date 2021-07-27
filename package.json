@@ -6,7 +6,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start:dev": "yarn workspace forkengine-boot start:dev"
+    "start-boot:dev": "yarn workspace forkengine-boot start:dev",
+    "start-main:dev": "yarn workspace main start:dev",
+    "start:dev": "concurrently \"yarn run start-boot:dev\" \"yarn run start-main:dev\""
   },
   "workspaces": [
     "modules/*"
