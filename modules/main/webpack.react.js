@@ -31,9 +31,11 @@ module.exports = {
             },
         ],
     },
-    externals: [nodeExternals({
-        modulesDir: path.resolve(__dirname, '../../node_modules'),
-    })],
+    externals: [
+        nodeExternals({
+            modulesDir: path.resolve(__dirname, '../../node_modules'),
+        })
+    ],
     output: {
         path: __dirname + "/dist",
         filename: "renderer.js",
