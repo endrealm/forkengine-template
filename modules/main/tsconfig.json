@@ -8,7 +8,7 @@
     "composite": true,
     "outDir": "dist",
     "jsx": "react",
-    "rootDir": "src"
+    "rootDir": "../"
   },
   "include": ["src"]
 }
