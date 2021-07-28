@@ -4,8 +4,10 @@ import { PerspectiveCamera, WebGLRenderer } from "three";
 
 import { OrbitControls } from '@three-ts/orbit-controls';
 import { SCENE_MANAGER } from 'forkengine-core/src/SceneManager';
+import useResizeAware from 'react-resize-aware';
 
 export default class SceneView extends Component {
+    private shape = {width: window.innerWidth, height: window.innerHeight}
     private camera!: PerspectiveCamera;
     private renderer!: WebGLRenderer;
     private containerRef = React.createRef<HTMLDivElement>();
@@ -13,7 +15,7 @@ export default class SceneView extends Component {
     private orbitControls!: OrbitControls;
 
     getShape() {
-        return {width: window.innerWidth, height: window.innerHeight}
+        return this.shape
     }
 
     componentDidMount() {
@@ -76,7 +78,41 @@ export default class SceneView extends Component {
         this.renderer.render(SCENE_MANAGER.getActiveScene(), this.camera)
     }
 
-    render() {
-        return <div ref={this.containerRef}/>
+    private resize(shape: {width: number, height: number}) {
+        if(!this.camera) return;
+        this.shape = shape;
+        const newShape = this.getShape();
+        this.camera.aspect = newShape.width / newShape.height;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(newShape.width, newShape.height);
+        this.renderUpdate();
     }
+
+    render() {
+
+        return <RenderWindow
+            containerRef={this.containerRef}
+            getShape={()=> this.getShape()}
+            resize={(shape)=> this.resize(shape)}
+        />
+    }
+}
+
+function RenderWindow(props: {
+    getShape(): {width: number, height: number},
+    resize(shape: {width: number, height: number}): any,
+    containerRef: React.RefObject<HTMLDivElement>
+}) {
+    const [resizeListener, sizes] = useResizeAware();
+    React.useEffect(() => {
+        console.log("resize")
+        props.resize({
+            height: sizes.height || props.getShape().height,
+            width: sizes.width || props.getShape().width
+        });
+        }, [sizes.width, sizes.height]);
+
+    return <div ref={props.containerRef}>
+        {resizeListener}
+    </div>
 }
