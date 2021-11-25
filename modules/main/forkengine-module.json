@@ -1,8 +1,7 @@
 {
     "version": "1.0",
     "dependencies": {
-        "https://github.com/endrealm/forkengine-core": {
-            "branch": "main"
-        }
+        "https://github.com/endrealm/forkengine-core": {},
+	    "https://github.com/endrealm/forkengine-web-renderer": {}
     }
 }
